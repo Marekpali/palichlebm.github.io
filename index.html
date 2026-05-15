@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marek Palichleb | Senior Business Analyst</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-bg: #ffffff;
+            --color-text: #1a1a1a;
+            --color-text-secondary: #666666;
+            --color-border: #e8e8e8;
+            --color-accent: #2c3e50;
+            --color-light-bg: #f8f9fa;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-bg: #0f0f0f;
+                --color-text: #ffffff;
+                --color-text-secondary: #cccccc;
+                --color-border: #333333;
+                --color-accent: #a0c7ff;
+                --color-light-bg: #1a1a1a;
+            }
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 80px 0 60px;
+            border-bottom: 1px solid var(--color-border);
+            position: relative;
+        }
+
+        .header-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .header-text h1 {
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header-text .tagline {
+            font-size: 16px;
+            color: var(--color-text-secondary);
+            margin-bottom: 24px;
+            font-weight: 400;
+        }
+
+        .meta {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: 1px solid var(--color-border);
+            background: transparent;
+            color: var(--color-text);
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+            background: var(--color-light-bg);
+        }
+
+        .btn-primary {
+            background: var(--color-accent);
+            color: white;
+            border-color: var(--color-accent);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            background: var(--color-accent);
+        }
+
+        .profile-image {
+            width: 100%;
+            max-width: 350px;
+            aspect-ratio: 1;
+            border-radius: 12px;
+            object-fit: cover;
+            background: var(--color-light-bg);
+            border: 1px solid var(--color-border);
+        }
+
+        .lang-toggle {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            display: flex;
+            gap: 12px;
+            font-size: 13px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            font-weight: 400;
+            padding: 0;
+            text-decoration: underline;
+            transition: color 0.3s;
+        }
+
+        .lang-btn.active {
+            color: var(--color-accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        main {
+            padding: 80px 0;
+        }
+
+        section {
+            margin-bottom: 100px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .section-header h2 {
+            font-size: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 13px;
+            color: var(--color-text-secondary);
+        }
+
+        .section-header::before {
+            content: "";
+            width: 32px;
+            height: 1px;
+            background: var(--color-border);
+        }
+
+        .about-text {
+            font-size: 16px;
+            line-height: 1.8;
+            max-width: 720px;
+            color: var(--color-text);
+        }
+
+        .work-grid {
+            display: grid;
+            gap: 48px;
+        }
+
+        .work-card {
+            border-left: 2px solid var(--color-border);
+            padding-left: 24px;
+            transition: border-color 0.3s;
+        }
+
+        .work-card:hover {
+            border-color: var(--color-accent);
+        }
+
+        .work-card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .work-desc {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 12px;
+            padding: 4px 10px;
+            background: var(--color-light-bg);
+            color: var(--color-text-secondary);
+            border-radius: 4px;
+            border: 1px solid var(--color-border);
+        }
+
+        .collab-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+        }
+
+        .collab-item h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .collab-item p {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+
+        footer {
+            border-top: 1px solid var(--color-border);
+            padding: 60px 0;
+            text-align: center;
+            font-size: 12px;
+            color: var(--color-text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .header-text h1 {
+                font-size: 28px;
+            }
+
+            .profile-image {
+                max-width: 250px;
+            }
+
+            .collab-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 60px 0 40px;
+            }
+
+            main {
+                padding: 60px 0;
+            }
+
+            .lang-toggle {
+                position: static;
+                margin-bottom: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            header {
+                padding: 40px 0 30px;
+            }
+
+            .header-text h1 {
+                font-size: 24px;
+            }
+
+            .header-text .tagline {
+                font-size: 14px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            main {
+                padding: 40px 0;
+            }
+
+            section {
+                margin-bottom: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="lang-toggle">
+                <button class="lang-btn active" onclick="switchLang('pl')">PL</button>
+                <span>/</span>
+                <button class="lang-btn" onclick="switchLang('en')">EN</button>
+            </div>
+
+            <div class="header-content">
+                <div class="header-text">
+                    <h1 id="name">Marek Palichleb</h1>
+                    <p class="tagline" id="tagline">Senior Business Analyst | Bridge between business & IT</p>
+                    <div class="meta">
+                        <span id="location">EU-based</span>
+                        <span id="status">Available for projects</span>
+                    </div>
+                    <div class="cta-buttons">
+                        <a href="https://linkedin.com/in/palichlebm/" target="_blank" class="btn btn-primary" id="cta-linkedin">
+                            <span>→</span>
+                            <span id="cta-text">LinkedIn</span>
+                        </a>
+                        <a href="mailto:marek.palichleb@gmail.com" class="btn" id="cta-email">
+                            <span>✉</span>
+                            <span id="email-text">Email</span>
+                        </a>
+                    </div>
+                </div>
+                <img src="profile.jpg" alt="Marek Palichleb" class="profile-image" id="profile-img">
+            </div>
+        </header>
+
+        <main>
+            <section>
+                <div class="section-header">
+                    <h2 id="about-title">About</h2>
+                </div>
+                <p class="about-text" id="about-text">
+                    Senior Analyst z 10+ latami w systemach biznesowych. Działam na przecięciu business i IT — analizuję procesy, projektuję integracje, dostarczam wyniki w złożonych środowiskach. Doświadczenie w telekomunikacji, ecommerce, financial tech i consulting. Współpracuję z zespołami nad strategią produktu, transformacją cyfrową i operacyjnym wdrażaniem w skali.
+                </p>
+            </section>
+
+            <section>
+                <div class="section-header">
+                    <h2 id="work-title">Selected Work</h2>
+                </div>
+                <div class="work-grid">
+                    <div class="work-card">
+                        <h3 id="w1-title">AI Pipeline do strukturyzacji wiedzy zdrowotnej</h3>
+                        <p class="work-desc" id="w1-desc">End-to-end system ingestion źródeł audio → strukturyzacja danych → centralna baza. Integracja LLM, prompt engineering, Airtable schema design. Architektura skalowana do 300+ danych wejściowych.</p>
+                        <div class="tags">
+                            <span class="tag">AI / LLM</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">Airtable</span>
+                            <span class="tag">Process Design</span>
+                        </div>
+                    </div>
+
+                    <div class="work-card">
+                        <h3 id="w2-title">Network infrastructure consulting</h3>
+                        <p class="work-desc" id="w2-desc">Projekt i propozycja wdrożenia zaawansowanej infrastruktury WiFi. Bilingual documentation, network architecture, metodologia pilot-first, approval gates. Implementacja w fazie rozwijania.</p>
+                        <div class="tags">
+                            <span class="tag">Network Design</span>
+                            <span class="tag">Technical Consulting</span>
+                            <span class="tag">Project Proposals</span>
+                        </div>
+                    </div>
+
+                    <div class="work-card">
+                        <h3 id="w3-title">Data automation — deduplication & scaling</h3>
+                        <p class="work-desc" id="w3-desc">Python pipeline deduplication + reorganizacja plików. 112K assets przetworzone, 85 GB uwolnione. Zero data loss, pełna auditability. Architektura skalowalna dla przyszłych batchy.</p>
+                        <div class="tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Data Ops</span>
+                            <span class="tag">Automation</span>
+                        </div>
+                    </div>
+
+                    <div class="work-card">
+                        <h3 id="w4-title">Financial analysis & reporting</h3>
+                        <p class="work-desc" id="w4-desc">Comprehensive investment strategy analysis dla klientów private. Structured frameworks dla długoterminowego planowania finansowego, scenario modeling, risk assessment. Bilingual deliverables.</p>
+                        <div class="tags">
+                            <span class="tag">Financial Analysis</span>
+                            <span class="tag">Strategy</span>
+                            <span class="tag">Reporting</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="section-header">
+                    <h2 id="collab-title">How I Can Help</h2>
+                </div>
+                <div class="collab-grid">
+                    <div class="collab-item">
+                        <h3 id="c1-h">Procesy & Systemy</h3>
+                        <p id="c1-t">Mapowanie AS-IS, redesign TO-BE, integracje API, przygotowanie do wdrożeń. Wsparcie dla zespołów w transformacji cyfrowej i operacyjnym scaling.</p>
+                    </div>
+                    <div class="collab-item">
+                        <h3 id="c2-h">AI & Automation</h3>
+                        <p id="c2-t">Pipelines LLM, prompt engineering, data structuring. Od koncepcji do produkcji — skalowalne systemy dla knowledge synthesis i content generation.</p>
+                    </div>
+                    <div class="collab-item">
+                        <h3 id="c3-h">Technical Consulting</h3>
+                        <p id="c3-t">Network infrastructure, cybersecurity, system design. Dla organizacji rozwijających nowe inicjatywy lub audytujących istniejące systemy.</p>
+                    </div>
+                    <div class="collab-item">
+                        <h3 id="c4-h">Projekty niestandardowe</h3>
+                        <p id="c4-t">Document automation, multilingual proposals, research + synthesis. Jeśli chodzi o data, systems, process — najczęściej da się to zrobić.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer id="footer">
+            © 2026 Marek Palichleb. Zawsze dostępny do rozmowy o systemach, danych i możliwościach.
+        </footer>
+    </div>
+
+    <script>
+        const content = {
+            pl: {
+                name: "Marek Palichleb",
+                tagline: "Senior Business Analyst | Bridge between business & IT",
+                location: "EU-based",
+                status: "Dostępny do projektów",
+                ctaText: "LinkedIn",
+                emailText: "Email",
+                aboutTitle: "O mnie",
+                aboutText: "Senior Analyst z 10+ latami w systemach biznesowych. Działam na przecięciu business i IT — analizuję procesy, projektuję integracje, dostarczam wyniki w złożonych środowiskach. Doświadczenie w telekomunikacji, ecommerce, financial tech i consulting. Współpracuję z zespołami nad strategią produktu, transformacją cyfrową i operacyjnym wdrażaniem w skali.",
+                workTitle: "Wybrane projekty",
+                w1: {
+                    title: "AI Pipeline do strukturyzacji wiedzy zdrowotnej",
+                    desc: "End-to-end system ingestion źródeł audio → strukturyzacja danych → centralna baza. Integracja LLM, prompt engineering, Airtable schema design. Architektura skalowana do 300+ danych wejściowych."
+                },
+                w2: {
+                    title: "Network infrastructure consulting",
+                    desc: "Projekt i propozycja wdrożenia zaawansowanej infrastruktury WiFi. Bilingual documentation, network architecture, metodologia pilot-first, approval gates. Implementacja w fazie rozwijania."
+                },
+                w3: {
+                    title: "Data automation — deduplication & scaling",
+                    desc: "Python pipeline deduplication + reorganizacja plików. 112K assets przetworzone, 85 GB uwolnione. Zero data loss, pełna auditability. Architektura skalowalna dla przyszłych batchy."
+                },
+                w4: {
+                    title: "Financial analysis & reporting",
+                    desc: "Comprehensive investment strategy analysis dla klientów private. Structured frameworks dla długoterminowego planowania finansowego, scenario modeling, risk assessment. Bilingual deliverables."
+                },
+                collabTitle: "Jak mogę pomóc",
+                c1: { h: "Procesy & Systemy", t: "Mapowanie AS-IS, redesign TO-BE, integracje API, przygotowanie do wdrożeń. Wsparcie dla zespołów w transformacji cyfrowej i operacyjnym scaling." },
+                c2: { h: "AI & Automation", t: "Pipelines LLM, prompt engineering, data structuring. Od koncepcji do produkcji — skalowalne systemy dla knowledge synthesis i content generation." },
+                c3: { h: "Technical Consulting", t: "Network infrastructure, cybersecurity, system design. Dla organizacji rozwijających nowe inicjatywy lub audytujących istniejące systemy." },
+                c4: { h: "Projekty niestandardowe", t: "Document automation, multilingual proposals, research + synthesis. Jeśli chodzi o data, systems, process — najczęściej da się to zrobić." },
+                footer: "© 2026 Marek Palichleb. Zawsze dostępny do rozmowy o systemach, danych i możliwościach."
+            },
+            en: {
+                name: "Marek Palichleb",
+                tagline: "Senior Business Analyst | Bridge between business & IT",
+                location: "EU-based",
+                status: "Available for projects",
+                ctaText: "LinkedIn",
+                emailText: "Email",
+                aboutTitle: "About",
+                aboutText: "Senior Analyst with 10+ years in business systems. I operate at the intersection of business and IT — analyzing processes, designing integrations, delivering results in complex environments. Experience in telecom, ecommerce, fintech and management consulting. I partner with teams on product strategy, digital transformation and operational scaling.",
+                workTitle: "Selected Work",
+                w1: {
+                    title: "AI pipeline for health knowledge structuring",
+                    desc: "End-to-end system: audio source ingestion → data structuring → central repository. LLM integration, prompt engineering, Airtable schema design. Architecture scaled to 300+ input sources."
+                },
+                w2: {
+                    title: "Network infrastructure consulting",
+                    desc: "Design and proposal for advanced WiFi infrastructure deployment. Bilingual documentation, network architecture, pilot-first methodology, approval gates. Implementation in development phase."
+                },
+                w3: {
+                    title: "Data automation — deduplication & scaling",
+                    desc: "Python pipeline: deduplication + file reorganization. 112K assets processed, 85 GB freed. Zero data loss, full auditability. Scalable architecture for future batches."
+                },
+                w4: {
+                    title: "Financial analysis & reporting",
+                    desc: "Comprehensive investment strategy analysis for private clients. Structured frameworks for long-term financial planning, scenario modeling, risk assessment. Bilingual deliverables."
+                },
+                collabTitle: "How I Can Help",
+                c1: { h: "Processes & Systems", t: "AS-IS mapping, TO-BE redesign, API integrations, go-live readiness. Support for teams undertaking digital transformation and operational scaling." },
+                c2: { h: "AI & Automation", t: "LLM pipelines, prompt engineering, data structuring. Concept to production — scalable systems for knowledge synthesis and content generation." },
+                c3: { h: "Technical Consulting", t: "Network infrastructure, cybersecurity, system design. For organizations launching new initiatives or auditing existing systems." },
+                c4: { h: "Bespoke projects", t: "Document automation, multilingual proposals, research + synthesis. If it involves data, systems, or process — likely we can build it." },
+                footer: "© 2026 Marek Palichleb. Always available to discuss systems, data, and possibilities."
+            }
+        };
+
+        let currentLang = 'pl';
+
+        function switchLang(lang) {
+            currentLang = lang;
+            const c = content[lang];
+
+            document.getElementById('name').textContent = c.name;
+            document.getElementById('tagline').textContent = c.tagline;
+            document.getElementById('location').textContent = c.location;
+            document.getElementById('status').textContent = c.status;
+            document.getElementById('cta-text').textContent = c.ctaText;
+            document.getElementById('email-text').textContent = c.emailText;
+
+            document.getElementById('about-title').textContent = c.aboutTitle;
+            document.getElementById('about-text').textContent = c.aboutText;
+            document.getElementById('work-title').textContent = c.workTitle;
+
+            document.getElementById('w1-title').textContent = c.w1.title;
+            document.getElementById('w1-desc').textContent = c.w1.desc;
+            document.getElementById('w2-title').textContent = c.w2.title;
+            document.getElementById('w2-desc').textContent = c.w2.desc;
+            document.getElementById('w3-title').textContent = c.w3.title;
+            document.getElementById('w3-desc').textContent = c.w3.desc;
+            document.getElementById('w4-title').textContent = c.w4.title;
+            document.getElementById('w4-desc').textContent = c.w4.desc;
+
+            document.getElementById('collab-title').textContent = c.collabTitle;
+            document.getElementById('c1-h').textContent = c.c1.h;
+            document.getElementById('c1-t').textContent = c.c1.t;
+            document.getElementById('c2-h').textContent = c.c2.h;
+            document.getElementById('c2-t').textContent = c.c2.t;
+            document.getElementById('c3-h').textContent = c.c3.h;
+            document.getElementById('c3-t').textContent = c.c3.t;
+            document.getElementById('c4-h').textContent = c.c4.h;
+            document.getElementById('c4-t').textContent = c.c4.t;
+
+            document.getElementById('footer').textContent = c.footer;
+
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
